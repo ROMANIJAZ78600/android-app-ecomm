@@ -41,11 +41,12 @@ const Header = ({title , showBack,  showSearch, showCart, showMenu, showLogo} : 
       {/* right side */}
       <View className='flex-row items-center gap-4'>
         {showSearch && (
-            <TouchableOpacity onPress={()=>router.push('/(tabs)/cart')}>
+            <TouchableOpacity >
                 <Ionicons name='search-outline' size={24} color={COLORS.primary} />
             </TouchableOpacity>
-        )}{showCart && (
-            <TouchableOpacity>
+        )}
+        {showCart && (
+            <TouchableOpacity onPress={()=>router.push('/(tabs)/cart')}>
                 <View className='relative'>
                 <Ionicons name='bag-outline' size={24} color={COLORS.primary} />
                 <View className='absolute -top-1 -right-1 bg-red-500 rounded-full h-4 w-4 items-center justify-center'>
