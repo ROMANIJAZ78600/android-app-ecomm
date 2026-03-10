@@ -7,6 +7,7 @@ import { useRouter } from 'expo-router'
 import { CATEGORIES } from '@/constants'
 import CategoryItem from '@/components/CategoryItem'
 import ProductCard from '@/components/ProductCard'
+import { Product } from '@/constants/types'
 
 
 const {width} = Dimensions.get('window');
@@ -36,7 +37,7 @@ const Home = () => {
         {/* Banner Slide */}
         <View className='mb-6'>
 <ScrollView horizontal showsHorizontalScrollIndicator={false} pagingEnabled className='w-full h-48 rounded-xl' scrollEventThrottle={16} onScroll={(e)=>{
-          const slide = Math.ceil(e.nativeEvent.contentOffset.x / e.nativeEvent.layoutMeasurement.width);
+          const slide = Math.round(e.nativeEvent.contentOffset.x / e.nativeEvent.layoutMeasurement.width);
           if(slide !== activeBannerIndex){
             setActiveBannerIndex(slide);
           }
@@ -44,6 +45,7 @@ const Home = () => {
           {BANNERS.map((banner, index) => (
             <View key={index} className=' relative w-full h-48 bg-gray-200 rounded-xl overflow-hidden' style={{ width: width - 32 }}>
               <Image source={{ uri: banner.image }} style={{ width: "100%", height: "100%" }} resizeMode='cover' />
+              <View className='absolute inset-0 bg-black/40' />
 
               <View className='absolute bottom-4 left-4 z-10'>
                 <Text className=' text-white text-2xl font-semibold'>{banner.title}</Text>
@@ -53,7 +55,7 @@ const Home = () => {
                 </TouchableOpacity>
                   
               </View>
-              <View className='absolute inset-0 bg-black/40' />
+              
             </View>
           ))}
 
