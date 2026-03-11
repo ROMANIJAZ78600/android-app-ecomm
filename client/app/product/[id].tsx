@@ -41,7 +41,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return (
