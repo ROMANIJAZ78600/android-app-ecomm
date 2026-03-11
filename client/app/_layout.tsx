@@ -3,20 +3,18 @@ import "@/global.css";
 import { CartProvider } from "@/context/cartcontext";
 import { WishlistProvider } from "@/context/wishlist";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Toast from "react-native-toast-message";
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-
-
-  <CartProvider>
-    <WishlistProvider>
-
-  <Stack screenOptions={{headerShown: false}}>
-    <Stack.Screen name="(tabs)"  />
-  </Stack>
-    </WishlistProvider>
-  </CartProvider>
+      <CartProvider>
+        <WishlistProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+          <Toast />
+        </WishlistProvider>
+      </CartProvider>
     </GestureHandlerRootView>
-
-  )
+  );
 }

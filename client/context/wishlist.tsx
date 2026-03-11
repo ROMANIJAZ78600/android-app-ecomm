@@ -5,22 +5,22 @@ import React, { createContext, use, useEffect } from "react";
 
 
 
-const WishslistContext = createContext<WishlistContextType | null>(undefined)
+const WishslistContext = createContext<WishlistContextType | undefined>(undefined)
 
 export function WishlistProvider({children} : {children: React.ReactNode}){
-    const [wishlistItems, setWishlistItems] = React.useState<Product[]>([]); 
+    const [wishlist, setWishlist] = React.useState<Product[]>([]); 
     const [loading, setLoading] = React.useState(false);
 
     const fetchWishlistItems = async () => {
         setLoading(true);
         // Simulate API call
-        setWishlistItems(dummyWishlist);
+        setWishlist(dummyWishlist);
         setLoading(false);
     }
 
-    const toggleWishlistItem = async (product: Product) => {
-      const exists = wishlistItems.find((item) => item._id === product._id);
-      setWishlistItems((prevItems) => {
+    const toggleWishlist = async (product: Product) => {
+        setWishlist((prevItems) => {
+            const exists = wishlist.find((item) => item._id === product._id);
         if (exists) {
           return prevItems.filter((item) => item._id !== product._id);
         } 
@@ -29,15 +29,15 @@ export function WishlistProvider({children} : {children: React.ReactNode}){
     }
     );
     }
-    const isInWishlistItem =  (productId: string) => {
-     return wishlistItems.some((item) => item._id === productId);
+    const isInWishlist =  (productId: string) => {
+     return wishlist.some((item) => item._id === productId);
     }
     useEffect(()=>{
         fetchWishlistItems();
         
     },[])
     return (
-        <WishslistContext.Provider value={{ wishlistItems, isInWishlistItem, toggleWishlistItem, loading }}>
+        <WishslistContext.Provider value={{ wishlist, isInWishlist, toggleWishlist, loading }}>
             {children}
         </WishslistContext.Provider>
     );

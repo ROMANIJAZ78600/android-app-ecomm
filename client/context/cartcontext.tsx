@@ -22,7 +22,7 @@ type CartContextType = {
     isloading: boolean;
 }
 
-const CartContext = createContext<CartContextType | null>(undefined)
+const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export function CartProvider({children} : {children: React.ReactNode}){
     
